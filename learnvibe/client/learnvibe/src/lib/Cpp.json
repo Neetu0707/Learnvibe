@@ -1,0 +1,201 @@
+{
+  "id": 1,
+  "courseName": "C++ Programming Masterclass",
+  "duration": "10 weeks",
+  "createdBy": "John Doe",
+  "image": "https://www.jrebel.com/sites/default/files/styles/social_preview_image/public/image/2020-05/image-blog-revel-top-java-tools.jpg?itok=34P5v4AD",
+  "content": {
+    "chapters": [
+      {
+        "chapterName": "Introduction to C++",
+        "topics": [
+          {
+            "name": "History of C++",
+            "details": [
+              "C++ was developed by Bjarne Stroustrup at Bell Labs in the early 1980s as an enhancement to the C programming language, incorporating object-oriented programming features.",
+              "Initially, it was called 'C with Classes,' as it added features like classes, inheritance, and polymorphism to the procedural programming paradigm of C.",
+              "The name 'C++' was introduced in 1983, symbolizing the increment operator in C, to denote its evolutionary nature beyond C.",
+              "The first official standardization of C++ was released in 1998 (known as C++98), which formalized many features of the language, followed by minor updates in C++03.",
+              "The language saw major advancements with the release of C++11, which introduced modern features like auto keyword, lambda expressions, smart pointers, and multithreading support.",
+              "Subsequent updates like C++14, C++17, and C++20 continued to refine the language with features such as constexpr, structured bindings, ranges, and coroutines, making it more expressive and efficient.",
+              "C++ is widely regarded for its performance, versatility, and ability to handle both low-level and high-level programming tasks, making it a popular choice in fields like game development, operating systems, embedded systems, and real-time applications.",
+              "The evolution of C++ has been driven by a strong community of developers and organizations, ensuring its relevance in the ever-changing landscape of technology."
+            ],
+            "index":0
+          },
+          {
+            "name": "Applications of C++",
+            "details": [
+              "C++ is widely used in game development due to its high performance and ability to manage hardware resources efficiently. Popular game engines like Unreal Engine are built using C++.",
+              "It plays a critical role in high-performance computing applications, such as simulations, scientific research, and financial modeling, where speed and efficiency are paramount.",
+              "C++ is extensively used in real-time systems, such as those found in robotics, automotive control systems, and telecommunications, where precise timing and low latency are required.",
+              "The language is a go-to choice for developing operating systems and system-level software, including Microsoft Windows, macOS components, and Linux tools.",
+              "Many embedded systems, like those used in IoT devices and medical equipment, are developed using C++ for its close-to-hardware capabilities.",
+              "C++ is a popular choice for creating database management systems (DBMS) such as MySQL, which is one of the most widely used open-source database systems in the world.",
+              "Its versatility makes it a key player in developing enterprise software, including customer relationship management (CRM) systems and supply chain management tools.",
+              "C++ is also used in web browsers for performance-critical components like rendering engines (e.g., Google Chrome's Blink engine).",
+              "It is employed in the development of high-frequency trading systems and financial algorithms that require optimized performance and low latency."
+            ],
+            "index":1
+          },
+          {
+            "name": "Setting up the environment",
+            "details": [
+              "Install a C++ compiler such as GCC (GNU Compiler Collection), which is free, open-source, and widely used for compiling C++ programs.",
+              "Use an Integrated Development Environment (IDE) like Visual Studio, Code::Blocks, or Eclipse, which provides tools for writing, debugging, and compiling C++ code efficiently.",
+              "If you prefer lightweight setups, consider using a text editor like Visual Studio Code or Sublime Text with C++ extensions and configure it with a compiler.",
+              "Ensure you have the latest version of the compiler or IDE to take advantage of modern C++ features introduced in C++11, C++14, C++17, and C++20 standards.",
+              "Set up your system's PATH environment variable to include the directory where your C++ compiler is installed for easy command-line usage.",
+              "Test your setup by writing and running a simple 'Hello, World!' program to verify that your compiler or IDE is configured correctly.",
+              "For macOS users, Xcode provides a comprehensive development environment for C++ and other programming languages.",
+              "Linux users can install GCC and build tools via the package manager (e.g., `sudo apt install build-essential` on Ubuntu).",
+              "Consider using build systems like CMake or Makefiles for managing large C++ projects and automating compilation processes.",
+              "Explore online C++ compilers like Replit, Compiler Explorer, or OnlineGDB for quick testing and prototyping without installing anything locally."
+            ],
+            "index":2
+          },
+          {
+            "name": "Hello World Program",
+            "details": [
+              "The 'Hello World' program is typically the first program written when learning any programming language. It serves as an introduction to the syntax and structure of the language.",
+              "To write your first C++ program, create a file with a `.cpp` extension (e.g., `hello_world.cpp`) using a text editor or an IDE.",
+              "The basic structure of a C++ program includes the inclusion of libraries (e.g., `#include <iostream>`), the `main` function, and statements to execute.",
+              "The `#include <iostream>` directive is used to include the standard input-output stream library, which allows you to use `std::cout` to display output.",
+              "The `main()` function is the entry point of every C++ program. It is where the program starts executing.",
+              "The `std::cout` object is used to print output to the console, and the `<<` operator sends the output to the stream.",
+              "A simple example of a 'Hello World' program is as follows:",
+              "```cpp\n#include <iostream>\n\nint main() {\n    std::cout << \"Hello, World!\" << std::endl;\n    return 0;\n}\n```",
+              "The `return 0;` statement indicates that the program has executed successfully. It is optional in modern C++ standards if the `main()` function has an `int` return type.",
+              "Compile your program using a C++ compiler, such as GCC, by running `g++ hello_world.cpp -o hello_world` in the terminal or command prompt.",
+              "Run the compiled program (e.g., `./hello_world` on Linux/macOS or `hello_world.exe` on Windows) to see the output: 'Hello, World!'.",
+              "This program introduces you to key C++ concepts like including libraries, the `main` function, output streams, and program execution flow."
+            ],
+            "index":3
+          }
+        ],
+        "quiz": {
+          "totalQuestions": 5,
+          "questions": [
+            {
+              "question": "Who created C++?",
+              "options": [
+                "Dennis Ritchie",
+                "Bjarne Stroustrup",
+                "James Gosling",
+                "Guido van Rossum"
+              ],
+              "answer": "Bjarne Stroustrup"
+            },
+            {
+              "question": "Which year was C++ first released?",
+              "options": ["1979", "1985", "1995", "2000"],
+              "answer": "1985"
+            },
+            {
+              "question": "What is the primary paradigm of C++?",
+              "options": [
+                "Procedural",
+                "Object-Oriented",
+                "Functional",
+                "Logic"
+              ],
+              "answer": "Object-Oriented"
+            },
+            {
+              "question": "Which header file is required to use `std::cout` in C++?",
+              "options": [
+                "#include <iostream>",
+                "#include <stdio.h>",
+                "#include <stdlib.h>",
+                "#include <iomanip>"
+              ],
+              "answer": "#include <iostream>"
+            },
+            {
+              "question": "What is the file extension for a C++ source code file?",
+              "options": [".c", ".cpp", ".cs", ".java"],
+              "answer": ".cpp"
+            },
+            {
+              "question": "Which of the following is a valid C++ data type?",
+              "options": ["integer", "real", "float", "number"],
+              "answer": "float"
+            },
+            {
+              "question": "Which operator is used to access members of a class through a pointer?",
+              "options": [".", "->", "::", "*"],
+              "answer": "->"
+            },
+            {
+              "question": "Which C++ feature allows the same function name to be used with different parameters?",
+              "options": [
+                "Inheritance",
+                "Encapsulation",
+                "Polymorphism",
+                "Overloading"
+              ],
+              "answer": "Overloading"
+            },
+            {
+              "question": "What is the correct syntax for creating an object of a class in C++?",
+              "options": [
+                "ClassName object;",
+                "object = new ClassName();",
+                "ClassName object = new ClassName();",
+                "new ClassName object;"
+              ],
+              "answer": "ClassName object;"
+            },
+            {
+              "question": "Which keyword is used to define a constant in C++?",
+              "options": ["final", "constant", "const", "static"],
+              "answer": "const"
+            },
+            {
+              "question": "What does STL stand for in C++?",
+              "options": [
+                "Standard Template Library",
+                "System Template Library",
+                "Simple Template Library",
+                "Standard Tools Library"
+              ],
+              "answer": "Standard Template Library"
+            },
+            {
+              "question": "Which C++ loop is guaranteed to execute at least once?",
+              "options": [
+                "for loop",
+                "while loop",
+                "do-while loop",
+                "None of the above"
+              ],
+              "answer": "do-while loop"
+            },
+            {
+              "question": "Which of these access specifiers allows a class member to be accessible from anywhere?",
+              "options": ["private", "protected", "public", "default"],
+              "answer": "public"
+            },
+            {
+              "question": "What is the purpose of the `virtual` keyword in C++?",
+              "options": [
+                "To declare a function that cannot be overridden",
+                "To declare a function that can be overridden in derived classes",
+                "To declare a variable as constant",
+                "To declare a function as static"
+              ],
+              "answer": "To declare a function that can be overridden in derived classes"
+            },
+            {
+              "question": "Which keyword is used to handle exceptions in C++?",
+              "options": ["catch", "throw", "try", "All of the above"],
+              "answer": "All of the above"
+            }
+          ],
+          "index":4
+        }
+      }
+    ],
+    "length": 5
+  }
+}

@@ -1,0 +1,92 @@
+{
+    "id": 2,
+    "courseName": "React.js Masterclass",
+    "duration": "12 weeks",
+    "createdBy": "Jane Smith",
+    "image": "https://talent500.com/blog/wp-content/uploads/sites/42/2024/05/react-must-be-in-scope-when-using-jsx-scaled-1.jpg",
+    "content": {
+      "chapters": [
+        {
+          "chapterName": "Introduction to React.js",
+          "topics": [
+            {
+              "name": "What is React.js?",
+              "details": [
+                "React.js is a JavaScript library for building user interfaces, developed by Facebook and first released in 2013.",
+                "It allows developers to build reusable UI components and manage state efficiently.",
+                "React follows a declarative programming approach, making it easier to reason about UI updates.",
+                "React uses a virtual DOM to optimize rendering performance.",
+                "It supports both class-based and function-based components, with hooks introduced in React 16.8.",
+                "React is widely used for developing web applications, mobile apps (React Native), and even server-side rendering with Next.js."
+              ]
+            },
+            {
+              "name": "Why Use React?",
+              "details": [
+                "React simplifies UI development with its component-based architecture.",
+                "It improves performance with its virtual DOM mechanism.",
+                "React provides unidirectional data flow, making state management predictable.",
+                "It has strong community support and a rich ecosystem of libraries.",
+                "React can be used to develop single-page applications (SPAs) and progressive web apps (PWAs)."
+              ]
+            },
+            {
+              "name": "Setting Up the React Environment",
+              "details": [
+                "Install Node.js and npm (Node Package Manager) to manage dependencies.",
+                "Use Create React App (CRA) for quickly setting up a React project.",
+                "Alternatively, set up a project manually using Webpack and Babel.",
+                "Use an IDE like VS Code with relevant extensions for better development experience.",
+                "Install dependencies using npm or yarn (e.g., `npm install` or `yarn`).",
+                "Run the React development server with `npm start` to preview your application."
+              ]
+            },
+            {
+              "name": "Hello World in React",
+              "details": [
+                "The first step in learning React is creating a simple 'Hello World' component.",
+                "Create a new file `App.js` and define a functional component.",
+                "Use JSX (JavaScript XML) syntax to write UI elements inside JavaScript.",
+                "Render the component inside the root DOM element using `ReactDOM.createRoot()`.",
+                "Example:",
+                "```jsx\nimport React from 'react';\nfunction App() {\n  return <h1>Hello, World!</h1>;\n}\nexport default App;\n```",
+                "Import and use the `App` component in `index.js`."
+              ]
+            }
+          ],
+          "quiz": {
+            "totalQuestions": 5,
+            "questions": [
+              {
+                "question": "Who developed React.js?",
+                "options": ["Google", "Facebook", "Microsoft", "Twitter"],
+                "answer": "Facebook"
+              },
+              {
+                "question": "Which year was React.js first released?",
+                "options": ["2010", "2013", "2015", "2018"],
+                "answer": "2013"
+              },
+              {
+                "question": "What is JSX?",
+                "options": ["JavaScript XML", "JSON Extension", "Java Syntax Extension", "None of the above"],
+                "answer": "JavaScript XML"
+              },
+              {
+                "question": "Which command is used to create a new React project?",
+                "options": ["npm init react-app", "create-react-app", "npm start", "react new project"],
+                "answer": "create-react-app"
+              },
+              {
+                "question": "Which method is used to render a React component to the DOM?",
+                "options": ["renderComponent()", "ReactDOM.render()", "renderReact()", "React.render()"],
+                "answer": "ReactDOM.render()"
+              }
+            ]
+          }
+        }
+      ],
+      "length": 5
+    }
+  }
+  

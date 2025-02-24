@@ -1,0 +1,270 @@
+
+  {
+    "id": 1,
+    "courseName": "Python Programming Masterclass",
+    "duration": "12 weeks",
+    "createdBy": "Jane Doe",
+    "image":
+    "https://www.jrebel.com/sites/default/files/styles/social_preview_image/public/image/2020-05/image-blog-revel-top-java-tools.jpg?itok=34P5v4AD",
+    "content": {
+      "chapters": [
+        {
+          "chapterName": "Introduction to Python",
+          "topics": [
+            {
+              "name": "Overview of Python",
+              "details": [
+                "Python is a versatile, high-level programming language known for its readability and extensive libraries.",
+                "It is widely used in web development, data analysis, artificial intelligence, scientific computing, and more.",
+                "Python supports multiple programming paradigms, including structured, object-oriented, and functional programming."
+              ]
+            },
+            {
+              "name": "History of Python",
+              "details": [
+                "Python was created by Guido van Rossum and first released in 1991.",
+                "It was designed to be highly readable and to allow programmers to express concepts in fewer lines of code."
+              ]
+            }
+          ]
+        },
+        {
+          "chapterName": "Python Basics",
+          "topics": [
+            {
+              "name": "Setting Up Python",
+              "details": [
+                "Download and install the latest version of Python from the official website.",
+                "Set up an Integrated Development Environment (IDE) like PyCharm or Visual Studio Code for efficient coding."
+              ]
+            },
+            {
+              "name": "Writing Your First Python Program",
+              "details": [
+                "Create a new Python file with a '.py' extension.",
+                "Write a simple 'Hello, World!' program to test your setup."
+              ]
+            }
+          ]
+        },
+        {
+          "chapterName": "Python Data Types",
+          "topics": [
+            {
+              "name": "Primitive Data Types",
+              "details": [
+                "Integers: Whole numbers without a decimal point.",
+                "Floats: Numbers with a decimal point.",
+                "Strings: Sequences of characters enclosed in single or double quotes.",
+                "Booleans: Represent True or False values."
+              ]
+            },
+            {
+              "name": "Data Structures",
+              "details": [
+                "Lists: Ordered, mutable collections of items.",
+                "Tuples: Ordered, immutable collections of items.",
+                "Sets: Unordered collections of unique items.",
+                "Dictionaries: Unordered collections of key-value pairs."
+              ]
+            }
+          ]
+        },
+        {
+          "chapterName": "Python Operators",
+          "topics": [
+            {
+              "name": "Arithmetic Operators",
+              "details": [
+                "Addition (+), Subtraction (-), Multiplication (*), Division (/), Modulus (%), Exponentiation (**), Floor Division (//)"
+              ]
+            },
+            {
+              "name": "Comparison Operators",
+              "details": [
+                "Equal to (==), Not equal to (!=), Greater than (>), Less than (<), Greater than or equal to (>=), Less than or equal to (<=)"
+              ]
+            },
+            {
+              "name": "Logical Operators",
+              "details": [
+                "And (and), Or (or), Not (not)"
+              ]
+            },
+            {
+              "name": "Assignment Operators",
+              "details": [
+                "Assign (=), Add and assign (+=), Subtract and assign (-=), Multiply and assign (*=), Divide and assign (/=)"
+              ]
+            }
+          ]
+        },
+        {
+          "chapterName": "Python Conditional Statements and Loops",
+          "topics": [
+            {
+              "name": "Conditional Statements",
+              "details": [
+                "If statement: Executes a block of code if a condition is true.",
+                "Elif statement: Checks another condition if the previous ones were false.",
+                "Else statement: Executes a block of code if all previous conditions were false."
+              ]
+            },
+            {
+              "name": "Loops",
+              "details": [
+                "For loop: Iterates over a sequence (like a list, tuple, or string).",
+                "While loop: Repeats as long as a condition is true.",
+                "Break statement: Exits the current loop.",
+                "Continue statement: Skips the rest of the code inside the current loop and moves to the next iteration."
+              ]
+            }
+          ]
+        },
+        {
+          "chapterName": "Python Functions",
+          "topics": [
+            {
+              "name": "Defining Functions",
+              "details": [
+                "Use the 'def' keyword to define a function.",
+                "Functions can accept parameters and return values."
+              ]
+            },
+            {
+              "name": "Lambda Functions",
+              "details": [
+                "Anonymous functions defined using the 'lambda' keyword.",
+                "Useful for short, throwaway functions."
+              ]
+            },
+            {
+              "name": "Recursion",
+              "details": [
+                "A function that calls itself.",
+                "Useful for problems that can be broken down into smaller, similar problems."
+              ]
+            }
+          ]
+        },
+        {
+          "chapterName": "Python Exception Handling",
+          "topics": [
+            {
+              "name": "Try and Except Blocks",
+              "details": [
+                "Use 'try' to wrap code that might cause an exception.",
+                "Use 'except' to handle exceptions and prevent program crashes."
+              ]
+            },
+            {
+              "name": "Finally Block",
+              "details": [
+                "Code inside the 'finally' block will execute regardless of whether an exception occurred or not.",
+                "Useful for cleanup actions like closing files or releasing resources."
+              ]
+            }
+          ]
+        },
+        {
+          "chapterName": "Python File Handling",
+          "topics": [
+            {
+              "name": "Opening Files",
+              "details": [
+                "Use the 'open()' function with the appropriate mode ('r' for read, 'w' for write, 'a' for append)."
+              ]
+            },
+            {
+              "name": "Reading Files",
+              "details": [
+                "Use 'read()' to read the entire file.",
+                "Use 'readline()' to read one line at a time.",
+                "Use 'readlines()' to read all lines into a list."
+              ]
+            },
+            {
+              "name": "Writing to Files",
+              "details": [
+                "Use 'write()' to write a string to a file.",
+                "Use 'writelines()' to write a list of strings to a file."
+              ]
+            },
+            {
+              "name": "Closing Files",
+              "details": [
+                "Always close a file after completing operations using the 'close()' method.",
+                "Alternatively, use the 'with' statement to automatically close the file after its suite finishes."
+              ]
+            }
+          ]
+        },
+        {
+          "chapterName": "Python Quizzes",
+          "topics": [
+            {
+              "name": "Quiz 1: Python Basics",
+              "details": [
+                "Multiple-choice questions covering Python syntax, data types, and basic operations."
+              ]
+            },
+            {
+              "name": "Quiz 2: Control Flow",
+              "details": [
+                "Multiple-choice questions on conditional statements and loops."
+              ]
+            },
+            {
+              "name": "Quiz 3: Functions and Recursion",
+              "details": [
+                "Multiple-choice questions on function definition, lambda functions, and recursion."
+              ]
+            },
+            {
+              "name": "Quiz 4: Exception Handling",
+              "details": [
+                "Multiple-choice questions on try-except blocks, handling exceptions, and using finally."
+              ]
+            },
+            {
+              "name": "Quiz 5: File Handling",
+              "details": [
+                "Multiple-choice questions on file operations, including reading, writing, and closing files."
+              ]
+            },
+            {
+              "name": "Quiz 6: Python Data Types",
+              "details": [
+                "Multiple-choice questions on primitive data types, lists, tuples, sets, and dictionaries."
+              ]
+            },
+            {
+              "name": "Quiz 7: Operators in Python",
+              "details": [
+                "Multiple-choice questions on arithmetic, comparison, logical, and assignment operators."
+              ]
+            },
+            {
+              "name": "Quiz 8: Loops and Conditional Statements",
+              "details": [
+                "Multiple-choice questions focusing on the understanding of loops and if-elif-else statements."
+              ]
+            },
+            {
+              "name": "Quiz 9: Advanced Functions",
+              "details": [
+                "Multiple-choice questions on advanced Python functions, including recursion and lambda functions."
+              ]
+            },
+            {
+              "name": "Quiz 10: Python Syntax and Programming Practices",
+              "details": [
+                "Multiple-choice questions covering Python syntax and common programming best practices."
+              ]
+            }
+          ]
+        }
+      ],
+      "length": 31
+    }
+  }
