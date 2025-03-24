@@ -27,9 +27,9 @@ const Courses = () => {
   useEffect(() => {
     if (email) {
       getUserDetails(email);
-      getCourses();
       getStatus(email);
     }
+    getCourses();
   }, [email]);
 
   const getCourses = async () => {
@@ -71,6 +71,12 @@ const Courses = () => {
   const registerCourse = async (courseName) => {
     try {
       if (!isverified) {
+        toast.error(
+          "Please Login to See Course Details!!"
+        );
+        return;
+      } 
+      else if (!isverified) {
         toast.error(
           "Please verify your email before registering for a course."
         );

@@ -71,7 +71,9 @@ const AccordionItem = ({
 
   const ShowQuiz = () => {
     {
-      if (topicCompleted === topics.length) {
+      console.log(topicCompleted,topics.length);
+      
+      if (topicCompleted === topics.length +1) {
         onQuizClick();
       } else {
         toast.error("Please complete the previous topic first to Take Quiz.");
@@ -121,9 +123,7 @@ const AccordionItem = ({
             <span className="flex justify-between gap-2">
               <h3 className="font-semibold">
                 Take Quiz&nbsp;&nbsp;
-                <QuizIcon />
               </h3>
-              <HttpsIcon className="text-red-600" />
             </span>
           </div>
         </div>
