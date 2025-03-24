@@ -11,7 +11,7 @@ const port = 5000;
 // Middleware
 app.use(bodyParser.json());
 app.use(cors({
-  origin: ['https://learning-website-blond.vercel.app', 'http://localhost:3000'],
+  origin: ['https://learning-website-blond.vercel.app', 'http://localhost:3000','https://verbose-space-doodle-g47qqvq7q5v6cw756-3000.app.github.dev','*'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'auth-token'],
   credentials: true
