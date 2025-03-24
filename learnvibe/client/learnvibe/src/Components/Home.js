@@ -73,7 +73,7 @@ const Home = () => {
           </div>
 
           <div class="mt-17 flex justify-center" data-wow-delay="0.1s">
-            <img class="mx-auto" src="images/web.png" alt="hero" className="max-w-[800px] w-[90%] lg:w-full" />
+            <img class="mx-auto" src="bg.png" alt="hero" className="max-w-[800px] w-[90%] lg:w-full" />
           </div>
         </section>
         <Features />

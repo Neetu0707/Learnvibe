@@ -34,8 +34,8 @@ const Section3 = () => {
                     </a>
                   </div>
 
-                  <div class="max-w-[428px] w-full hidden sm:block">
-                    <img src="images/big-icon.svg" alt="icon"/>
+                  <div class="hidden sm:block">
+                    <img src="/images/logo (2).png" alt="icon" className='h-[50px]'/>
                   </div>
                 </div>
 

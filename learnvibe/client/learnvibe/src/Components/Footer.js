@@ -24,7 +24,7 @@ const Footer = () => {
           <div class="flex flex-wrap justify-between">
             <div class="mb-10 max-w-[571px] w-full">
               <Link to={"/"} className="flex h-[30px] mb-4">
-                <img src="/images/logo (1).svg" alt="Logo" />
+              <img src="/images/logo (2).png" alt="icon" className='h-[40px]'/>
                 <img src="/images/logo.png" alt="" className="h-[30px]" />
               </Link>
 
