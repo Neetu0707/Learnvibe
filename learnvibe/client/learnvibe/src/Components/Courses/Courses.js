@@ -76,6 +76,7 @@ const Courses = () => {
         toast.error(
           "Please Login to See Course Details!!"
         );
+        setShowVerifyEmail(true);
         return;
       }
       else if (!isverified) {
