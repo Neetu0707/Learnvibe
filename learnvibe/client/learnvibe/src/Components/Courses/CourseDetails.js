@@ -21,6 +21,7 @@ const CourseDetails = () => {
   const [course, setCourse] = useState([]);
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(true);
   const [course_id, setCourse_id] = useState("");
   const [completed, setCompleted] = useState(0);
 
@@ -35,6 +36,13 @@ const CourseDetails = () => {
       setEmail(JSON.parse(storedUser).email);
     }
   });
+
+  useEffect(() => {
+    if (course?.file_data?.content?.chapters?.length > 0) {
+      setSelectedChapterIndex(0); // Open the first chapter by default
+      setSelectedTopic(course.file_data.content.chapters[0].topics[0]); // Select the first topic by default
+    }
+  }, [course]);
 
   const getCourses = async () => {
     const res = await fetch(
@@ -53,6 +61,7 @@ const CourseDetails = () => {
     );
 
     setCourse(course);
+    setLoading(false);
     console.log(course);
   };
 
@@ -93,7 +102,25 @@ const CourseDetails = () => {
       );
       if (res.status === 200) {
         toast.success("Topic index updated successfully");
-        window.location.reload();
+  
+        // Find the current topic index
+        let currentChapterIndex = selectedChapterIndex;
+        let currentTopicIndex = course.file_data.content.chapters[currentChapterIndex].topics.findIndex(
+          (topic) => topic.name === selectedTopic.name
+        );
+  
+        // Move to the next topic in the same chapter if possible
+        if (currentTopicIndex < course.file_data.content.chapters[currentChapterIndex].topics.length - 1) {
+          setSelectedTopic(course.file_data.content.chapters[currentChapterIndex].topics[currentTopicIndex + 1]);
+        } 
+        // Move to the first topic of the next chapter if available
+        else if (currentChapterIndex < course.file_data.content.chapters.length - 1) {
+          setSelectedChapterIndex(currentChapterIndex + 1);
+          setSelectedTopic(course.file_data.content.chapters[currentChapterIndex + 1].topics[0]);
+        }
+  
+        // Optional: Reloading will reset state, avoid if not necessary
+        // window.location.reload();
       }
     } catch (error) {
       toast.error("Error updating topic index");
@@ -113,7 +140,7 @@ const CourseDetails = () => {
         toast.success("Course completed successfully!");
       }
       setShowQuiz(false);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const ShowTopic = (topic, index) => {
@@ -151,6 +178,21 @@ const CourseDetails = () => {
       <main>
         <div className="w-full min-h-screen text-white lg:flex justify-center lg:mt-16">
           <div className="w-[20%] h-screen lg:mt-6 hidden lg:block overflow-auto">
+            {loading ? (
+            <div className="w-full max-w-md mx-auto animate-pulse">
+              {[...Array(1)].map((_, index) => (
+                <div key={index} className="border-b py-4">
+                  <div className="h-6 bg-gray-300 rounded w-3/4 mb-2"></div>
+                  <div className="h-4 bg-gray-300 rounded w-1/2"></div>
+                </div>
+              ))}
+              <div className="border-b flex min-h-[50px] items-center pl-16 w-full">
+                <span className="flex justify-between gap-2 w-full pr-4 cursor-pointer">
+                  <div className="h-6 bg-gray-300 rounded w-1/2"></div>
+                  <div className="h-6 bg-gray-300 rounded w-6"></div>
+                </span>
+              </div>
+            </div>):(
             <Accordian
               data={course?.file_data}
               onTopicClick={handleTopicClick}
@@ -159,7 +201,7 @@ const CourseDetails = () => {
               setShow={setShow}
               completed={completed}
               setCompleted={setCompleted}
-            />
+            />)}
           </div>
           <button
             class="hero-subtitle-gradient hover:hero-subtitle-hover relative  font-medium text-sm inline-flex items-center gap-2 py-2 px-4.5 rounded-full lg:hidden mt-24 ml-6"
@@ -179,7 +221,7 @@ const CourseDetails = () => {
                 {selectedTopic.details.map((detail, index) => (
                   <div key={index}>
                     {detail.startsWith("#include") ||
-                    detail.startsWith("```") ? (
+                      detail.startsWith("```") ? (
                       <>
                         <pre className="bg-gray-100 text-black p-2 rounded text-sm">
                           <code>{detail.replace(/```/g, "")}</code>
@@ -215,46 +257,46 @@ const CourseDetails = () => {
 
                   {course.file_data?.content?.chapters[selectedChapterIndex]
                     ?.quiz?.questions.length > 0 && (
-                    <>
-                      <p className="font-semibold mb-2">
-                        {currentQuestionIndex + 1}.{" "}
-                        {
-                          course.file_data?.content?.chapters[
-                            selectedChapterIndex
-                          ].quiz.questions[currentQuestionIndex].question
-                        }
-                      </p>
+                      <>
+                        <p className="font-semibold mb-2">
+                          {currentQuestionIndex + 1}.{" "}
+                          {
+                            course.file_data?.content?.chapters[
+                              selectedChapterIndex
+                            ].quiz.questions[currentQuestionIndex].question
+                          }
+                        </p>
 
-                      <div className="pl-4">
-                        {course.file_data?.content?.chapters[
-                          selectedChapterIndex
-                        ].quiz.questions[currentQuestionIndex].options.map(
-                          (option, optionIndex) => (
-                            <div key={optionIndex} className="mb-2">
-                              <label>
-                                <input
-                                  type="radio"
-                                  name={`question-${currentQuestionIndex}`}
-                                  className="mr-2"
-                                  onChange={() => {
-                                    setSelectedAnswer(option);
-                                    setIsAnswered(false); // Reset answered state when selecting a new option
-                                  }}
-                                />
-                                {option}
-                              </label>
-                            </div>
-                          )
-                        )}
-                      </div>
-                    </>
-                  )}
+                        <div className="pl-4">
+                          {course.file_data?.content?.chapters[
+                            selectedChapterIndex
+                          ].quiz.questions[currentQuestionIndex].options.map(
+                            (option, optionIndex) => (
+                              <div key={optionIndex} className="mb-2">
+                                <label>
+                                  <input
+                                    type="radio"
+                                    name={`question-${currentQuestionIndex}`}
+                                    className="mr-2"
+                                    onChange={() => {
+                                      setSelectedAnswer(option);
+                                      setIsAnswered(false); // Reset answered state when selecting a new option
+                                    }}
+                                  />
+                                  {option}
+                                </label>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </>
+                    )}
                 </div>
                 {isAnswered && (
                   <div className=" px-6">
                     {selectedAnswer ===
-                    course.file_data?.content?.chapters[selectedChapterIndex]
-                      .quiz.questions[currentQuestionIndex].answer ? (
+                      course.file_data?.content?.chapters[selectedChapterIndex]
+                        .quiz.questions[currentQuestionIndex].answer ? (
                       <p className="text-green-500">Correct!</p>
                     ) : (
                       <p className="text-red-500">
@@ -281,8 +323,8 @@ const CourseDetails = () => {
                     Submit Answer
                   </button>
                   {currentQuestionIndex <
-                  course.file_data?.content?.chapters[selectedChapterIndex].quiz
-                    .questions.length -
+                    course.file_data?.content?.chapters[selectedChapterIndex].quiz
+                      .questions.length -
                     1 ? (
                     <button
                       className="bg-gray-700 text-white px-4 py-2 rounded"
@@ -316,9 +358,8 @@ const CourseDetails = () => {
                 <div key={chapterIndex}>
                   {/* Chapter Header */}
                   <div
-                    className={`p-4 bg-gray-900 border-b border-gray-800 cursor-pointer ${
-                      selectedChapterIndex === chapterIndex ? "bg-gray-700" : ""
-                    }`}
+                    className={`p-4 bg-gray-900 border-b border-gray-800 cursor-pointer ${selectedChapterIndex === chapterIndex ? "bg-gray-700" : ""
+                      }`}
                     onClick={() => handleChapterClick(chapterIndex)}
                   >
                     <h2 className="text-lg font-semibold">
@@ -378,7 +419,6 @@ const CourseDetails = () => {
           </div>
         </div>
       )}
-
       {show && (
         <ShowCertificate
           name={email}

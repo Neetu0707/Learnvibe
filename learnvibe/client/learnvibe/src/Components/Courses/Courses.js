@@ -10,6 +10,7 @@ const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [usercourses, setUserCourses] = useState([]);
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(true);
   const [isverified, setIsVerified] = useState(false);
   const [showVerifyEmail, setShowVerifyEmail] = useState(false);
 
@@ -44,6 +45,7 @@ const Courses = () => {
 
       const data = await res.json();
       setCourses(data);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching courses:", error);
     }
@@ -75,7 +77,7 @@ const Courses = () => {
           "Please Login to See Course Details!!"
         );
         return;
-      } 
+      }
       else if (!isverified) {
         toast.error(
           "Please verify your email before registering for a course."
@@ -115,8 +117,7 @@ const Courses = () => {
   const getUserDetails = async (email) => {
     try {
       const response = await fetch(
-        `${
-          process.env.REACT_APP_BACKEND_URL
+        `${process.env.REACT_APP_BACKEND_URL
         }/auth/getuser?email=${encodeURIComponent(email)}`,
         {
           method: "GET",
@@ -186,50 +187,55 @@ const Courses = () => {
           </div>
 
           <div class="mt-17" data-wow-delay="0.1s" className="p-10">
-            <div class="ea za xc">
-              {courses.map((course) => (
-                <div key={course.id} className="pb nf hk/2 _k/3 2xl:ud-w-1/4">
-                  <div className="ja nd qd wd fe hf">
-                    <div className="f ka gd kd">
-                      <img
-                        src={course.file_data.image}
-                        alt="course"
-                        className="bg-cover min-h-[200px]"
-                      />
-                    </div>
-                    <div>
-                      <h3>
-                        <a
-                          href="javascript:void(0)"
-                          className="sa ya hh nh vh cj"
-                        >
-                          {course.file_data.courseName}
-                        </a>
-                      </h3>
-                      <div className="ka za yc ad">
-                        <div className="pb"></div>
+            <div className="ea za xc justify-center">
+              {loading ? (
+                <>
+                  {[...Array(2)].map((_, index) => (
+                    <div key={index} className="pb nf hk/2 _k/3 2xl:ud-w-1/4">
+                      <div className="ja nd qd wd fe hf animate-pulse">
+                        <div className="f ka gd kd bg-gray-300 h-[200px] w-full rounded-md"></div>
+                        <div className="mt-4">
+                          <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div>
+                          <div className="h-4 bg-gray-300 rounded w-1/2 mb-4"></div>
+                          <div className="h-10 bg-gray-300 rounded w-full"></div>
+                        </div>
                       </div>
-                      <button
-                        onClick={() =>
-                          registerCourse(course.file_data.courseName)
-                        }
-                        className="za yc _c ld ee se kf eh nh vh w-full"
-                      >
-                        {usercourses.find(
-                          (c) => c.course_id === course.file_data.courseName
-                        )?.completed === 1
-                          ? `${
-                              usercourses.find(
-                                (c) =>
-                                  c.course_id === course.file_data.courseName
-                              )?.completed
-                            }%`
-                          : "Start Here"}
-                      </button>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                courses.map((course) => (
+                  <div key={course.id} className="pb nf hk/2 _k/3 2xl:ud-w-1/4">
+                    <div className="ja nd qd wd fe hf">
+                      <div className="f ka gd kd">
+                        <img
+                          src={course.file_data.image}
+                          alt="course"
+                          className="bg-cover min-h-[200px]"
+                        />
+                      </div>
+                      <div>
+                        <h3>
+                          <a href="#" className="sa ya hh nh vh cj">
+                            {course.file_data.courseName}
+                          </a>
+                        </h3>
+                        <div className="ka za yc ad">
+                          <div className="pb"></div>
+                        </div>
+                        <button
+                          onClick={() => registerCourse(course.file_data.courseName)}
+                          className="za yc _c ld ee se kf eh nh vh w-full"
+                        >
+                          {usercourses.find((c) => c.course_id === course.file_data.courseName)?.completed === 1
+                            ? `${usercourses.find((c) => c.course_id === course.file_data.courseName)?.completed}%`
+                            : "Start Here"}
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
         </section>

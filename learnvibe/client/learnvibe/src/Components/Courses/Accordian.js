@@ -15,11 +15,19 @@ const AccordionItem = ({
   activeTopicIndex,
   onQuizClick,
   setCompleted,
+  defaultOpen
 }) => {
+  const [isExpanded, setIsExpanded] = useState(defaultOpen || false); 
   const [token, setToken] = useState(null);
   const [usercourses, setUserCourses] = useState([]);
   const [email, setEmail] = useState("");
-  const [topicCompleted, setTopicCompleted] = useState(0);
+  const [topicCompleted, setTopicCompleted] = useState(0);// Open first chapter by default
+
+  useEffect(() => {
+    if (defaultOpen) {
+      setIsExpanded(true);
+    }
+  }, [defaultOpen]);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("firebaseUser");
@@ -83,21 +91,22 @@ const AccordionItem = ({
 
   return (
     <div className="border-b flex flex-col items-end">
-      <button
-        className="flex gap-3 w-full p-4 text-left transition duration-300"
-        onClick={onClick}
+    <button
+      className="flex gap-3 w-full p-4 text-left transition duration-300"
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
+      <span
+        className={`transform transition-transform duration-300 ${
+          isOpen ? "rotate-90" : "rotate-0"
+        }`}
       >
-        <span
-          className={`transform transition-transform duration-300 ${
-            isOpen ? "rotate-90" : "rotate-0"
-          }`}
-        >
-          <ArrowForwardIosIcon />
-        </span>
-        <span>{title}</span>
-      </button>
-      {isOpen && (
-        <div className="p-2 w-[85%]">
+        <ArrowForwardIosIcon />
+      </span>
+      <span>{title}</span>
+    </button>
+
+      {isExpanded && (
+        <div className="">
           {topics.map((topic, index) => (
             <div
               key={index}
@@ -105,7 +114,7 @@ const AccordionItem = ({
                 activeTopicIndex === index ? "bg-blue-500 text-white" : ""
               }`}
               onClick={() => ShowTopic(topic, topic.index)} // Pass index to onTopicClick
-            >
+             >
               <span className="flex justify-between gap-2">
                 <h3 className="font-semibold">{topic.name}</h3>
                 {topicCompleted <= topic.index? (
@@ -116,7 +125,7 @@ const AccordionItem = ({
               </span>
             </div>
           ))}
-          <div
+            <div
             className={`mb-2 cursor-pointer p-2 rounded`}
             onClick={ShowQuiz} // Call onQuizClick
           >
