@@ -4,10 +4,8 @@ import Footer from "../Footer";
 import Header from "../Header";
 import Accordian from "./Accordian";
 import ShowCertificate from "./ShowCertificate";
-import QuizIcon from "@mui/icons-material/Quiz";
 import { toast, ToastContainer } from "react-toastify";
-import HttpsIcon from "@mui/icons-material/Https";
-import DoneAllIcon from "@mui/icons-material/DoneAll";
+import Sidebar from "./Sidebar";
 import Quiz from "./Quizes";
 
 const CourseDetails = () => {
@@ -25,6 +23,7 @@ const CourseDetails = () => {
   const [loading, setLoading] = useState(true);
   const [course_id, setCourse_id] = useState("");
   const [completed, setCompleted] = useState(0);
+  const toggleSidebar = () => setShowTopics(!showTopics);
 
   useEffect(() => {
     getCourses();
@@ -103,25 +102,25 @@ const CourseDetails = () => {
       );
       if (res.status === 200) {
         toast.success("Topic index updated successfully");
-  
+
         // Find the current topic index
         let currentChapterIndex = selectedChapterIndex;
         let currentTopicIndex = course.file_data.content.chapters[currentChapterIndex].topics.findIndex(
           (topic) => topic.name === selectedTopic.name
         );
-  
+
         // Move to the next topic in the same chapter if possible
         if (currentTopicIndex < course.file_data.content.chapters[currentChapterIndex].topics.length - 1) {
           setSelectedTopic(course.file_data.content.chapters[currentChapterIndex].topics[currentTopicIndex + 1]);
-        } 
+        }
         // Move to the first topic of the next chapter if available
         else if (currentChapterIndex < course.file_data.content.chapters.length - 1) {
           setSelectedChapterIndex(currentChapterIndex + 1);
           setSelectedTopic(course.file_data.content.chapters[currentChapterIndex + 1].topics[0]);
         }
-  
+
         // Scroll to top smoothly
-      window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
         // Optional: Reloading will reset state, avoid if not necessary
         // window.location.reload();
       }
@@ -182,39 +181,39 @@ const CourseDetails = () => {
         <div className="w-full min-h-screen text-white lg:flex justify-center lg:mt-16">
           <div className="w-[20%] h-screen lg:mt-6 hidden lg:block overflow-auto">
             {loading ? (
-            <div className="w-full max-w-md mx-auto animate-pulse">
-              {[...Array(1)].map((_, index) => (
-                <div key={index} className="border-b py-4">
-                  <div className="h-6 bg-gray-300 rounded w-3/4 mb-2"></div>
-                  <div className="h-4 bg-gray-300 rounded w-1/2"></div>
+              <div className="w-full max-w-md mx-auto animate-pulse">
+                {[...Array(1)].map((_, index) => (
+                  <div key={index} className="border-b py-4">
+                    <div className="h-6 bg-gray-300 rounded w-3/4 mb-2"></div>
+                    <div className="h-4 bg-gray-300 rounded w-1/2"></div>
+                  </div>
+                ))}
+                <div className="border-b flex min-h-[50px] items-center pl-16 w-full">
+                  <span className="flex justify-between gap-2 w-full pr-4 cursor-pointer">
+                    <div className="h-6 bg-gray-300 rounded w-1/2"></div>
+                    <div className="h-6 bg-gray-300 rounded w-6"></div>
+                  </span>
                 </div>
-              ))}
-              <div className="border-b flex min-h-[50px] items-center pl-16 w-full">
-                <span className="flex justify-between gap-2 w-full pr-4 cursor-pointer">
-                  <div className="h-6 bg-gray-300 rounded w-1/2"></div>
-                  <div className="h-6 bg-gray-300 rounded w-6"></div>
-                </span>
-              </div>
-            </div>):(
-            <Accordian
-              data={course?.file_data}
-              onTopicClick={handleTopicClick}
-              onQuizClick={handleQuizClick}
-              handleChapterClick={handleChapterClick}
-              setShow={setShow}
-              completed={completed}
-              setCompleted={setCompleted}
-            />)}
+              </div>) : (
+              <Accordian
+                data={course?.file_data}
+                onTopicClick={handleTopicClick}
+                onQuizClick={handleQuizClick}
+                handleChapterClick={handleChapterClick}
+                setShow={setShow}
+                completed={completed}
+                setCompleted={setCompleted}
+              />)}
           </div>
           <button
             class="hero-subtitle-gradient hover:hero-subtitle-hover relative  font-medium text-sm inline-flex items-center gap-2 py-2 px-4.5 rounded-full lg:hidden mt-24 ml-6"
-            onClick={() => setShowTopics(true)}
+            onClick={toggleSidebar}
           >
             {/* <img src="/images/icon-title.svg" alt="icon" /> */}
 
             <span class="hero-subtitle-text">Show Topics</span>
           </button>
-          <div className="lg:w-[55%] min-h-screen border border-gray-700 rounded-md m-6 lg:ml-2 lg:mt-6 overflow-auto">
+          <div className="lg:w-[55%] min-h-screen lg:border lg:border-gray-700 rounded-md lg:m-6 lg:ml-2 lg:mt-6 overflow-auto">
             {/* Show Topic Details */}
             {selectedTopic && !showQuiz && (
               <div className="p-8">
@@ -253,80 +252,24 @@ const CourseDetails = () => {
             {/* Show Quiz Interface */}
             {showQuiz && selectedChapterIndex !== null && (
               <>
-               <Quiz quiz={course.file_data?.content?.chapters[selectedChapterIndex]
-                    ?.quiz} />
+                <Quiz quiz={course.file_data?.content?.chapters[selectedChapterIndex]
+                  ?.quiz} />
               </>
             )}
           </div>
         </div>
       </main>
-      {showTopics && (
-        <div className="w-full lg:w-[25%] lg:max-w-[350px] min-h-screen lg:hidden fixed top-0 z-50 lg:p-6 lg:pr-2 md:p-4 p-6 bg-[#1b1c1e90] lg:bg-transparent">
-          <div className="border border-gray-700 rounded-md">
-            {course.file_data?.content?.chapters.map(
-              (chapter, chapterIndex) => (
-                <div key={chapterIndex}>
-                  {/* Chapter Header */}
-                  <div
-                    className={`p-4 bg-gray-900 border-b border-gray-800 cursor-pointer ${selectedChapterIndex === chapterIndex ? "bg-gray-700" : ""
-                      }`}
-                    onClick={() => handleChapterClick(chapterIndex)}
-                  >
-                    <h2 className="text-lg font-semibold">
-                      Chapter {chapterIndex + 1}: {chapter.chapterName}
-                    </h2>
-                  </div>
-
-                  {/* Topics and Quiz */}
-                  {selectedChapterIndex === chapterIndex && (
-                    <div className="bg-gray-700">
-                      {chapter.topics.map((topic, topicIndex) => (
-                        <div
-                          key={topicIndex}
-                          className="p-2 pl-6 cursor-pointer hover:bg-gray-900"
-                          onClick={() => ShowTopic(topic, topic.index)}
-                        >
-                          <span className="flex justify-between gap-2">
-                            <h3 className="font-semibold">{topic.name}</h3>
-                            {completed <= topic.index ? (
-                              <HttpsIcon className="text-red-600" />
-                            ) : (
-                              <DoneAllIcon className="text-green-500" />
-                            )}
-                          </span>
-                        </div>
-                      ))}
-                      <div
-                        className="p-2 pl-6 cursor-pointer hover:bg-gray-900"
-                        onClick={ShowQuiz}
-                      >
-                        <span className="flex justify-between gap-2">
-                          <h3 className="font-semibold">
-                            Take Quiz&nbsp;&nbsp;
-                          </h3>
-                        </span>
-                      </div>
-                      <div className="border-b flex min-h-[50px] items-center pl-7 pr-2 w-full">
-                        <span
-                          className="flex justify-between gap-2 w-full cursor-pointer"
-                          onClick={handleShowCertificate}
-                        >
-                          <h3 className="font-semibold">Your Certificate</h3>
-                          {completed >= course?.file_data?.content?.length ? (
-                            <DoneAllIcon className="text-green-500" />
-                          ) : (
-                            <HttpsIcon className="text-red-600" />
-                          )}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )
-            )}
-          </div>
-        </div>
-      )}
+      <Sidebar
+        showTopics={showTopics}
+        toggleSidebar={toggleSidebar}
+        handleChapterClick={handleChapterClick}
+        selectedChapterIndex={selectedChapterIndex}
+        course={course}
+        ShowTopic={ShowTopic}
+        completed={completed}
+        ShowQuiz={ShowQuiz}
+        handleShowCertificate={handleShowCertificate}
+      />
       {show && (
         <ShowCertificate
           name={email}

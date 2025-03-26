@@ -29,7 +29,7 @@ const UserCourse = () => {
   }, []);
 
   return (
-    <section className="lg:w-[600px] w-[300px] min-h-[40vh] bg-black/30 backdrop-blur-md p-4 text-white rounded-lg">
+    <section className="lg:w-[600px] w-full min-h-[40vh] bg-black/30 backdrop-blur-md p-4 text-white rounded-lg">
       <span className="text-lg font-semibold">User Courses</span>
 
       {loading ? (

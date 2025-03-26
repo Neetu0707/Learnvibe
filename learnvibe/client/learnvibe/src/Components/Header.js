@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import MobileSidebar from "./MobileSidebar";
 import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
@@ -12,6 +15,7 @@ const Header = () => {
   const [email, setEmail] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const routeName = location.pathname; // Extract route name
@@ -93,16 +97,9 @@ const Header = () => {
             </Link>
 
             {/* Hamburger Toggle BTN */}
-            <button
-              className="lg:hidden block"
-              onClick={() => setShowSidebar(true)}
-            >
-              <div className="flex flex-col gap-2">
-                <p className="w-[30px] h-[2px] bg-white rounded-full"></p>
-                <p className="w-[30px] h-[2px] bg-white rounded-full"></p>
-                <p className="w-[30px] h-[2px] bg-white rounded-full"></p>
-              </div>
-            </button>
+            <IconButton onClick={() => setSidebarOpen(true)} sx={{ color: "white" }}>
+              <MenuIcon fontSize="large" />
+            </IconButton>
             {/* Hamburger Toggle BTN */}
           </div>
 
@@ -111,81 +108,76 @@ const Header = () => {
               }`}
           >
             <nav>
-      <ul className="flex lg:items-center flex-col lg:flex-row gap-5 lg:gap-2">
-        <li
-          className="nav__menu lg:py-7"
-          style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
-        >
-          <Link
-            to="/"
-            onClick={() => setActive("/")}
-            className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient ${
-              active === "/" ? "!text-white nav-gradient" : ""
-            }`}
-          >
-            Home
-          </Link>
-        </li>
-        <li
-          className="nav__menu lg:py-7"
-          style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
-        >
-          <Link
-            to="/courses"
-            onClick={() => setActive("/courses")}
-            className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient ${
-              active === "/courses" ? "!text-white nav-gradient" : ""
-            }`}
-          >
-            Courses
-          </Link>
-        </li>
-        <li
-          className="nav__menu lg:py-7"
-          style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
-        >
-          <Link
-            to="/playground"
-            onClick={() => setActive("/playground")}
-            className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient ${
-              active === "/playground" ? "!text-white nav-gradient" : ""
-            }`}
-          >
-            Playground
-          </Link>
-        </li>
-        <li
-          className="nav__menu lg:py-7"
-          style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
-        >
-          <Link
-            to="/about"
-            onClick={() => setActive("/about")}
-            className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient ${
-              active === "/about" ? "!text-white nav-gradient" : ""
-            }`}
-          >
-            About
-          </Link>
-        </li>
-        {isAdmin && (
-          <li
-            className="nav__menu lg:py-7"
-            style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
-          >
-            <Link
-              to="/adddata"
-              onClick={() => setActive("/adddata")}
-              className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient ${
-                active === "/adddata" ? "!text-white nav-gradient" : ""
-              }`}
-            >
-              Dashboard
-            </Link>
-          </li>
-        )}
-      </ul>
-    </nav>
+              <ul className="flex lg:items-center flex-col lg:flex-row gap-5 lg:gap-2">
+                <li
+                  className="nav__menu lg:py-7"
+                  style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
+                >
+                  <Link
+                    to="/"
+                    onClick={() => setActive("/")}
+                    className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient ${active === "/" ? "!text-white nav-gradient" : ""
+                      }`}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li
+                  className="nav__menu lg:py-7"
+                  style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
+                >
+                  <Link
+                    to="/courses"
+                    onClick={() => setActive("/courses")}
+                    className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient ${active === "/courses" ? "!text-white nav-gradient" : ""
+                      }`}
+                  >
+                    Courses
+                  </Link>
+                </li>
+                <li
+                  className="nav__menu lg:py-7"
+                  style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
+                >
+                  <Link
+                    to="/playground"
+                    onClick={() => setActive("/playground")}
+                    className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient ${active === "/playground" ? "!text-white nav-gradient" : ""
+                      }`}
+                  >
+                    Playground
+                  </Link>
+                </li>
+                <li
+                  className="nav__menu lg:py-7"
+                  style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
+                >
+                  <Link
+                    to="/about"
+                    onClick={() => setActive("/about")}
+                    className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient ${active === "/about" ? "!text-white nav-gradient" : ""
+                      }`}
+                  >
+                    About
+                  </Link>
+                </li>
+                {isAdmin && (
+                  <li
+                    className="nav__menu lg:py-7"
+                    style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
+                  >
+                    <Link
+                      to="/adddata"
+                      onClick={() => setActive("/adddata")}
+                      className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient ${active === "/adddata" ? "!text-white nav-gradient" : ""
+                        }`}
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+                )}
+              </ul>
+            </nav>
 
             {token ? (
               <div className="relative">
@@ -248,138 +240,7 @@ const Header = () => {
           </div>
         </div>
 
-        <div
-          className={`w-full h-screen bg-[#0c0d3a] p-8 absolute top-0  lg:hidden *
-        ${showSidebar ? "right-[0%] transition-transform" : "right-[100%]"}
-        `}
-        >
-          <div className="w-full min-h-[1vh] flex justify-end">
-            <button
-              className="tetx-white text-[30px]"
-              onClick={() => setShowSidebar(false)}
-            >
-              &times;
-            </button>
-          </div>
-          <nav>
-            <ul className="flex lg:items-center flex-col lg:flex-row gap-5 lg:gap-2">
-              <li
-                className="nav__menu lg:py-7"
-                style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
-              >
-                <Link
-                  to={"/"}
-                  className="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient !text-white nav-gradient"
-                >
-                  Home
-                </Link>
-              </li>
-              <li
-                className="nav__menu lg:py-7"
-                style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
-              >
-                <Link
-                  to={"/courses"}
-                  className="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient"
-                >
-                  Courses
-                </Link>
-              </li>
-              <li
-                className="nav__menu lg:py-7"
-                style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
-              >
-                <Link
-                  to={"/playground"}
-                  className="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient"
-                >
-                  Playground
-                </Link>
-              </li>
-              <li
-                className="nav__menu lg:py-7"
-                style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
-              >
-                <Link
-                  to={"/about"}
-                  className="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient"
-                >
-                  About
-                </Link>
-              </li>
-              {isAdmin && (
-                <li
-                  className="nav__menu lg:py-7"
-                  style={{ padding: stickyMenu ? "0.25rem 0" : "" }}
-                >
-                  <Link
-                    to={"/adddata"}
-                    className="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient"
-                  >
-                    Add Data
-                  </Link>
-                </li>
-              )}
-            </ul>
-          </nav>
-
-          {token ? (
-            <>
-              <div className="flex flex-col justify-center gap-6 mt-7 lg:mt-0 pl-4">
-                <p
-                  className="button-border-gradient relative rounded-lg text-white text-sm flex items-center gap-1.5 py-2 px-4.5 shadow-button hover:button-gradient-hover hover:shadow-none w-fit"
-                  onClick={() => {
-                    setShowLogout(true);
-                  }}
-                >
-                  Logout
-                  <svg
-                    className="mt-0.5"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M14.4002 7.60002L9.2252 2.35002C9.0002 2.12502 8.6502 2.12502 8.4252 2.35002C8.2002 2.57502 8.2002 2.92502 8.4252 3.15002L12.6252 7.42502H2.0002C1.7002 7.42502 1.4502 7.67502 1.4502 7.97502C1.4502 8.27502 1.7002 8.55003 2.0002 8.55003H12.6752L8.4252 12.875C8.2002 13.1 8.2002 13.45 8.4252 13.675C8.5252 13.775 8.6752 13.825 8.8252 13.825C8.9752 13.825 9.1252 13.775 9.2252 13.675L14.4002 8.42502C14.6252 8.20002 14.6252 7.85002 14.4002 7.60002Z"
-                      fill="white"
-                    ></path>
-                  </svg>
-                </p>
-              </div>
-            </>
-          ) : (
-            <div className="flex flex-col justify-center gap-6 mt-7 lg:mt-0 pl-4">
-              <Link
-                to={"/signin"}
-                className="text-white text-sm hover:text-opacity-75 w-fit"
-              >
-                Sign in
-              </Link>
-
-              <Link
-                to={"/signup"}
-                className="button-border-gradient relative rounded-lg text-white text-sm flex items-center gap-1.5 py-2 px-4.5 shadow-button hover:button-gradient-hover hover:shadow-none w-fit"
-              >
-                Sign up
-                <svg
-                  className="mt-0.5"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14.4002 7.60002L9.2252 2.35002C9.0002 2.12502 8.6502 2.12502 8.4252 2.35002C8.2002 2.57502 8.2002 2.92502 8.4252 3.15002L12.6252 7.42502H2.0002C1.7002 7.42502 1.4502 7.67502 1.4502 7.97502C1.4502 8.27502 1.7002 8.55003 2.0002 8.55003H12.6752L8.4252 12.875C8.2002 13.1 8.2002 13.45 8.4252 13.675C8.5252 13.775 8.6752 13.825 8.8252 13.825C8.9752 13.825 9.1252 13.775 9.2252 13.675L14.4002 8.42502C14.6252 8.20002 14.6252 7.85002 14.4002 7.60002Z"
-                    fill="white"
-                  ></path>
-                </svg>
-              </Link>
-            </div>
-          )}
-        </div>
+        <MobileSidebar open={sidebarOpen} toggleSidebar={() => setSidebarOpen(false)} isAdmin={isAdmin} token={token} setToken={setToken} />
       </header>
 
       {showLogout && (
