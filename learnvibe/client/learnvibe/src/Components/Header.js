@@ -166,7 +166,7 @@ const Header = () => {
                     to={"/adddata"}
                     className="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient"
                   >
-                    Add Data
+                    Dashboard
                   </Link>
                 </li>
                 )}
