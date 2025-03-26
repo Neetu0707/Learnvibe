@@ -244,7 +244,7 @@ const Header = () => {
       </header>
 
       {showLogout && (
-        <div className="absolute inset-0 z-50 flex justify-center items-center bg-black/50 backdrop-blur-md">
+        <div className="fixed inset-0 z-50 flex justify-center items-center bg-black/50 backdrop-blur-md">
           <div className="w-[350px] h-[220px] bg-white shadow-lg rounded-2xl flex flex-col justify-between items-center p-6">
             <h3 className="text-lg font-semibold text-gray-800">Are you sure you want to Logout?</h3>
 
