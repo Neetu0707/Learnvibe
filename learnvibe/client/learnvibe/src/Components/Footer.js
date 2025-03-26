@@ -25,7 +25,7 @@ const Footer = () => {
             <div class="mb-10 max-w-[571px] w-full">
               <Link to={"/"} className="flex h-[30px] mb-4">
               <img src="/images/logo (2).png" alt="icon" className='h-[40px]'/>
-                <img src="/images/logo.png" alt="" className="h-[30px]" />
+                <img src="/images/logo.png" alt="" className="h-[30px] mt-2" />
               </Link>
 
               <p class="mb-12 xl:w-4/5">
