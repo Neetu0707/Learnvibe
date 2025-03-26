@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import html2canvas from "html2canvas";
 
-const ShowCertificate = ({ name, course,setShow }) => {
+const ShowCertificate = ({ name, course, setShow }) => {
   const certificateRef = useRef(null);
 
   const handleDownload = async () => {
@@ -22,9 +22,31 @@ const ShowCertificate = ({ name, course,setShow }) => {
   return (
     <div className="fixed top-0 z-50 w-full h-screen flex justify-center items-center bg-[#1017398c] overflow-x-scroll">
 
-    <button onClick={() => setShow(false)} className="absolute top-4 left-4 w-[40px] h-[40px] flex justify-center items-center text-[3vh] bg-red-500 text-white rounded-full shadow-lg">
+      <button
+        onClick={() => setShow(false)}
+        className="absolute top-4 left-4 w-[45px] h-[45px] flex justify-center items-center text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600 transition-all duration-300 transform hover:scale-110"
+      >
         &times;
-    </button>
+      </button>
+
+
+      <button
+        onClick={handleDownload}
+        className="absolute top-4 right-4 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className="w-5 h-5"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 16h16" />
+        </svg>
+        Download Certificate
+      </button>
+
       <div
         ref={certificateRef}
         className="relative bg-[#f0f0f0] scale-[50%] p-10 shadow-2xl w-[600px] text-center min-h-[80vh] min-w-[900px]"
@@ -57,7 +79,7 @@ const ShowCertificate = ({ name, course,setShow }) => {
 
             <div className="flex justify-between mt-6 min-w-[500px]">
               <div className="text-center flex flex-col items-center">
-              <img src="/images/neetu.svg" alt="" className="h-[50px]" />
+                <img src="/images/neetu.svg" alt="" className="h-[50px]" />
                 <div className="w-32 h-0.5 bg-gray-600 mx-auto">
                 </div>
                 <p className="text-sm font-semibold mt-1">Neetu Sahu</p>
@@ -67,7 +89,7 @@ const ShowCertificate = ({ name, course,setShow }) => {
                 <img src="/images/learnvibe.png" alt="" className="w-[100px]" />
               </div>
               <div className="text-center flex flex-col items-center">
-              <img src="/images/neetu.svg" alt="" className="h-[50px]" />
+                <img src="/images/neetu.svg" alt="" className="h-[50px]" />
                 <div className="w-32 h-0.5 bg-gray-600 mx-auto"></div>
                 <p className="text-sm font-semibold mt-1">Pragya Borse</p>
                 <p className="text-xs text-gray-500">REPRESENTATIVE</p>
@@ -76,14 +98,6 @@ const ShowCertificate = ({ name, course,setShow }) => {
           </div>
         </div>
       </div>
-
-      {/* Download Button */}
-      <button
-        onClick={handleDownload}
-        className="absolute top-10 right-4 px-5 py-2 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition"
-      >
-        Download Certificate
-      </button>
     </div>
   );
 };

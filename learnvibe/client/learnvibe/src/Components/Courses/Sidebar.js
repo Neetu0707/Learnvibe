@@ -78,7 +78,10 @@ const Sidebar = ({
         ))}
 
         {/* Certificate */}
-        <ListItem button sx={{ pl: 4 }} onClick={handleShowCertificate}>
+        <ListItem button sx={{ pl: 4 }} onClick={()=> {
+            handleShowCertificate();
+            toggleSidebar(); 
+        }}>
           <ListItemText primary="Your Certificate" />
           {completed >= course?.file_data?.content?.length ? (
             <DoneAllIcon className="text-green-500" />
