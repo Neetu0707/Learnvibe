@@ -107,6 +107,14 @@ const Courses = () => {
             navigate("/signin");
           }
         } else {
+          const data = await res.json();
+          console.log(data.message);
+          if(data.message === 'Course already added' && token){
+            navigate(`/course/${courseName.replace(/\s+/g, "-")}`);
+          }
+          else {
+            navigate("/signin");
+          }
           console.error("Failed to register course:", await res.text());
         }
       }

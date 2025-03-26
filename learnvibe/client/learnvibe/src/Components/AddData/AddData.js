@@ -23,7 +23,7 @@ const AddData = () => {
         </div>
 
         {/* Content Section */}
-        <div className="w-full flex flex-col gap-5 items-center px-4 sm:px-6 lg:px-20 overflow-y-auto max-h-[80vh]">
+        <div className="w-full flex flex-col lg:flex-row  gap-5 items-center px-4 sm:px-6 lg:px-20 overflow-y-auto max-h-[80vh]">
           <div className="w-full flex flex-col md:flex-row flex-wrap justify-center gap-6">
             <AllCourse />
             <UploadFile />

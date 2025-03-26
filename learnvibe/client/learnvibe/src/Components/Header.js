@@ -97,9 +97,12 @@ const Header = () => {
             </Link>
 
             {/* Hamburger Toggle BTN */}
+            <div className="lg:hidden">
             <IconButton onClick={() => setSidebarOpen(true)} sx={{ color: "white" }}>
               <MenuIcon fontSize="large" />
             </IconButton>
+            </div>
+          
             {/* Hamburger Toggle BTN */}
           </div>
 
