@@ -8,6 +8,7 @@ import QuizIcon from "@mui/icons-material/Quiz";
 import { toast, ToastContainer } from "react-toastify";
 import HttpsIcon from "@mui/icons-material/Https";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
+import Quiz from "./Quizes";
 
 const CourseDetails = () => {
   const { id } = useParams(); // Extract the `id` parameter from the URL
@@ -119,6 +120,8 @@ const CourseDetails = () => {
           setSelectedTopic(course.file_data.content.chapters[currentChapterIndex + 1].topics[0]);
         }
   
+        // Scroll to top smoothly
+      window.scrollTo({ top: 0, behavior: "smooth" });
         // Optional: Reloading will reset state, avoid if not necessary
         // window.location.reload();
       }
@@ -250,101 +253,8 @@ const CourseDetails = () => {
             {/* Show Quiz Interface */}
             {showQuiz && selectedChapterIndex !== null && (
               <>
-                <div className="p-8 ">
-                  <h3 className="text-2xl font-semibold mb-4">
-                    Quiz for Chapter {selectedChapterIndex + 1}
-                  </h3>
-
-                  {course.file_data?.content?.chapters[selectedChapterIndex]
-                    ?.quiz?.questions.length > 0 && (
-                      <>
-                        <p className="font-semibold mb-2">
-                          {currentQuestionIndex + 1}.{" "}
-                          {
-                            course.file_data?.content?.chapters[
-                              selectedChapterIndex
-                            ].quiz.questions[currentQuestionIndex].question
-                          }
-                        </p>
-
-                        <div className="pl-4">
-                          {course.file_data?.content?.chapters[
-                            selectedChapterIndex
-                          ].quiz.questions[currentQuestionIndex].options.map(
-                            (option, optionIndex) => (
-                              <div key={optionIndex} className="mb-2">
-                                <label>
-                                  <input
-                                    type="radio"
-                                    name={`question-${currentQuestionIndex}`}
-                                    className="mr-2"
-                                    onChange={() => {
-                                      setSelectedAnswer(option);
-                                      setIsAnswered(false); // Reset answered state when selecting a new option
-                                    }}
-                                  />
-                                  {option}
-                                </label>
-                              </div>
-                            )
-                          )}
-                        </div>
-                      </>
-                    )}
-                </div>
-                {isAnswered && (
-                  <div className=" px-6">
-                    {selectedAnswer ===
-                      course.file_data?.content?.chapters[selectedChapterIndex]
-                        .quiz.questions[currentQuestionIndex].answer ? (
-                      <p className="text-green-500">Correct!</p>
-                    ) : (
-                      <p className="text-red-500">
-                        Incorrect! The correct answer is:{" "}
-                        <strong>
-                          {
-                            course.file_data.content?.chapters[
-                              selectedChapterIndex
-                            ].quiz.questions[currentQuestionIndex].answer
-                          }
-                        </strong>
-                      </p>
-                    )}
-                  </div>
-                )}
-
-                <div className="flex justify-between  mt-4 px-6">
-                  <button
-                    className="bg-gray-700 text-white px-4 py-2 rounded"
-                    onClick={() => {
-                      setIsAnswered(true); // Mark as answered
-                    }}
-                  >
-                    Submit Answer
-                  </button>
-                  {currentQuestionIndex <
-                    course.file_data?.content?.chapters[selectedChapterIndex].quiz
-                      .questions.length -
-                    1 ? (
-                    <button
-                      className="bg-gray-700 text-white px-4 py-2 rounded"
-                      onClick={() => {
-                        NextQuestion(currentQuestionIndex + 1);
-                      }}
-                    >
-                      Next
-                    </button>
-                  ) : (
-                    <button
-                      className="bg-blue-500 text-white px-4 py-2 rounded"
-                      onClick={() => {
-                        checkCompletion();
-                      }}
-                    >
-                      Finish Quiz
-                    </button>
-                  )}
-                </div>
+               <Quiz quiz={course.file_data?.content?.chapters[selectedChapterIndex]
+                    ?.quiz} />
               </>
             )}
           </div>
@@ -393,9 +303,7 @@ const CourseDetails = () => {
                         <span className="flex justify-between gap-2">
                           <h3 className="font-semibold">
                             Take Quiz&nbsp;&nbsp;
-                            <QuizIcon />
                           </h3>
-                          <HttpsIcon className="text-red-600" />
                         </span>
                       </div>
                       <div className="border-b flex min-h-[50px] items-center pl-7 pr-2 w-full">

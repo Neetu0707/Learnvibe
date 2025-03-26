@@ -226,12 +226,33 @@ const Courses = () => {
                         </div>
                         <button
                           onClick={() => registerCourse(course.file_data.courseName)}
-                          className="za yc _c ld ee se kf eh nh vh w-full"
+                          className="relative overflow-hidden text-white font-semibold py-2 px-4 rounded-lg border border-gray-300 w-full"
                         >
-                          {usercourses.find((c) => c.course_id === course.file_data.courseName)?.completed === 1
-                            ? `${usercourses.find((c) => c.course_id === course.file_data.courseName)?.completed}%`
-                            : "Start Here"}
+                          {/* Green Progress Background */}
+                          <div
+                            className="absolute top-0 left-0 h-full bg-green-500 transition-all duration-300"
+                            style={{
+                              width: `${Math.min(
+                                (usercourses.find((c) => c.course_id === course.file_data.courseName)?.completed /
+                                  course.file_data.content.length) *
+                                100,
+                                100
+                              )}%`,
+                            }}
+                          ></div>
+
+                          {/* Text Content */}
+                          <span className="relative z-10">
+                            {(() => {
+                              const userCourse = usercourses.find((c) => c.course_id === course.file_data.courseName);
+                              if (!userCourse || userCourse.completed === 0) return "Start Here";
+
+                              const percentage = (userCourse.completed / course.file_data.content.length) * 100;
+                              return `${Math.min(percentage, 100).toFixed(0)}%`;
+                            })()}
+                          </span>
                         </button>
+
                       </div>
                     </div>
                   </div>
