@@ -43,16 +43,30 @@ export const getfile = async (req, res) => {
 export const addcourse = async (req, res) => {
   try {
     const { email, coursename, status, completed } = req.body;
+
+    // Check if the course already exists for the user
+    const existingCourse = await pool.query(
+      "SELECT * FROM usercourse WHERE user_email = $1 AND course_id = $2",
+      [email, coursename]
+    );
+
+    if (existingCourse.rows.length > 0) {
+      return res.status(400).json({ message: "Course already added" });
+    }
+
+    // If not exists, insert new course
     await pool.query(
       "INSERT INTO usercourse (user_email, course_id, status, completed) VALUES ($1, $2, $3, $4)",
       [email, coursename, status, completed]
     );
+
     res.status(201).json({ message: "Course added successfully" });
   } catch (error) {
     console.error("Error adding course:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 
 export const getcourse = async (req, res) => {
   try {
