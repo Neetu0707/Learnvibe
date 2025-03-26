@@ -3,7 +3,7 @@ import { Drawer, IconButton, List, ListItem, ListItemText, Box, Divider } from "
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
 
-const MobileSidebar = ({ open, toggleSidebar, isAdmin, token, setToken }) => {
+const MobileSidebar = ({ open, toggleSidebar, isAdmin, token, setToken, setShowLogout }) => {
   return (
     <Drawer
       anchor="right"
@@ -51,6 +51,7 @@ const MobileSidebar = ({ open, toggleSidebar, isAdmin, token, setToken }) => {
             className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg"
             onClick={() => {
               setToken(null);
+              setShowLogout(true)
               toggleSidebar();
             }}
           >

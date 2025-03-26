@@ -49,7 +49,10 @@ const Sidebar = ({
                   button
                   key={topicIndex}
                   sx={{ pl: 4, "&:hover": { backgroundColor: "#4b5563" } }}
-                  onClick={() => ShowTopic(topic, topic.index)}
+                  onClick={() => {
+                    ShowTopic(topic, topic.index);
+                    toggleSidebar(); // Close sidebar after clicking topic
+                  }}
                 >
                   <ListItemText primary={topic.name} />
                   {completed <= topic.index ? (
@@ -62,7 +65,10 @@ const Sidebar = ({
 
             {/* Take Quiz */}
             {selectedChapterIndex === chapterIndex && (
-              <ListItem button sx={{ pl: 4 }} onClick={ShowQuiz}>
+              <ListItem button sx={{ pl: 4 }} onClick={() => {
+                ShowQuiz();
+                toggleSidebar(); 
+                }}>
                 <ListItemText primary="Take Quiz" />
               </ListItem>
             )}

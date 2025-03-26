@@ -240,7 +240,7 @@ const Header = () => {
           </div>
         </div>
 
-        <MobileSidebar open={sidebarOpen} toggleSidebar={() => setSidebarOpen(false)} isAdmin={isAdmin} token={token} setToken={setToken} />
+        <MobileSidebar open={sidebarOpen} toggleSidebar={() => setSidebarOpen(false)} isAdmin={isAdmin} token={token} setToken={setToken} setShowLogout={setShowLogout} />
       </header>
 
       {showLogout && (

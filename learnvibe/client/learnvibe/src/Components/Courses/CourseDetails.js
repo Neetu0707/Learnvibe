@@ -267,7 +267,7 @@ const CourseDetails = () => {
         course={course}
         ShowTopic={ShowTopic}
         completed={completed}
-        ShowQuiz={ShowQuiz}
+        ShowQuiz={handleQuizClick}
         handleShowCertificate={handleShowCertificate}
       />
       {show && (
