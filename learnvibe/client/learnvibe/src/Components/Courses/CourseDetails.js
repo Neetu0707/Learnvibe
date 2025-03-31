@@ -84,11 +84,17 @@ const CourseDetails = () => {
   };
 
   const updateTopicIndex = async () => {
+    if (completed > course?.file_data?.content?.length - 1) {
+      let currentChapterIndex = selectedChapterIndex;
+      let currentTopicIndex = course.file_data.content.chapters[currentChapterIndex].topics.findIndex(
+        (topic) => topic.name === selectedTopic.name
+      );
+      setSelectedTopic(course.file_data.content.chapters[currentChapterIndex].topics[currentTopicIndex + 1]);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    
     try {
-      if (completed > course?.file_data?.content?.length - 1) {
-        return;
-      }
-
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/upload/updateindex`,
         {
