@@ -240,7 +240,7 @@ const CourseDetails = () => {
                 ))}
                 <div className="w-full flex justify-end">
                   <button
-                    className="bg-gray-700 text-white px-4 py-2 rounded"
+                    class="hero-button-gradient inline-flex rounded-lg py-3 px-7 text-white font-medium ease-in duration-300 hover:opacity-80"
                     onClick={updateTopicIndex}
                   >
                     Next
