@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-const Quiz = ({ quiz }) => {
+const Quiz = ({ quiz,courseName,email }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
@@ -26,7 +26,30 @@ const Quiz = ({ quiz }) => {
   };
 
   const handleSubmit = () => {
+    updateTopicIndex();
     setSubmitted(true);
+  };
+
+  const updateTopicIndex = async () => {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/upload/updateindex`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email,
+            course_id:courseName,
+          }),
+        }
+      );
+      if (res.status === 200) {
+        return
+      }
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
 
   const correctAnswers = userAnswers.filter(ans => ans.isCorrect).length;

@@ -253,7 +253,7 @@ const CourseDetails = () => {
             {showQuiz && selectedChapterIndex !== null && (
               <>
                 <Quiz quiz={course.file_data?.content?.chapters[selectedChapterIndex]
-                  ?.quiz} />
+                  ?.quiz} courseName={course.file_data.courseName} email={email} />
               </>
             )}
           </div>
