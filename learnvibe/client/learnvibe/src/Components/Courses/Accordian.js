@@ -164,6 +164,8 @@ const Accordian = ({
   };
 
   const handleShowCertificate = () => {
+    console.log(completed,data?.content?.length);
+    
     if ( completed >= data?.content?.length) {
       setShow(true);
     } else {
