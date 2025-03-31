@@ -38,12 +38,16 @@ const AccordionItem = ({
       }
       setToken(parsedUser);
       setEmail(parsedUser.email);
-      setTopicCompleted(
-        usercourses.find((c) => c.course_id === courseName).completed
-      );
-      console.log("Topic completed:", topicCompleted);
+      let topicsCount = usercourses.find((c) => c.course_id === courseName)?.completed;
+      if(topicsCount)
+      {
+        setTopicCompleted(topicsCount);
+        setCompleted(topicsCount);
+      }
+     
+      console.log("Topic completed:", topicsCount);
 
-      setCompleted(topicCompleted);
+     
     }
   }, [usercourses]);
 
