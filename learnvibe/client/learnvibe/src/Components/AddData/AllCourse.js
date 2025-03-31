@@ -31,7 +31,7 @@ const AllCourse = () => {
   }, []);
 
   return (
-    <section className="w-[350px] min-h-[40vh] bg-black/30 backdrop-blur-md p-4 text-white rounded-lg">
+    <section className="min-w-[350px] min-h-[40vh] bg-black/30 backdrop-blur-md p-4 text-white rounded-lg">
       <span className="text-lg font-semibold">All Courses</span>
 
       <div className="w-full min-h-fit mt-4 flex flex-col gap-3">

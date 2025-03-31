@@ -80,8 +80,7 @@ const AccordionItem = ({
   const ShowQuiz = () => {
     {
       console.log(topicCompleted,topics.length);
-      
-      if (topicCompleted === topics.length +1) {
+      if (topicCompleted >= topics.length) {
         onQuizClick();
       } else {
         toast.error("Please complete the previous topic first to Take Quiz.");

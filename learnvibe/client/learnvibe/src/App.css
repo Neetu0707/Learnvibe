@@ -2,7 +2,12 @@
 
 body::-webkit-scrollbar{
   background: transparent;
-  width: 10px;
+  width: 0px;
+}
+
+.scrollbar-hide::-webkit-scrollbar{
+  background: transparent;
+  width: 0px;
 }
 
 @-webkit-keyframes fadeIn {

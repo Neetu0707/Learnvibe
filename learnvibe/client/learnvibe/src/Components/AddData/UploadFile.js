@@ -46,7 +46,7 @@ const UploadFile = () => {
     <>
     <Box
       sx={{
-        width: 300,
+        minWidth: 300,
         minHeight: "40vh",
         bgcolor: "rgba(0, 0, 0, 0.3)",
         backdropFilter: "blur(8px)",
