@@ -41,67 +41,31 @@ export const getfile = async (req, res) => {
 };
 
 export const addcourse = async (req, res) => {
-  const { name, image, topics } = req.body;
-
-  // Check if the course already exists
   try {
-    const courseQuery = 'SELECT * FROM course WHERE course_name = $1';
-    const courseResult = await pool.query(courseQuery, [name]);
+    const { email, coursename, status, completed } = req.body;
 
-    if (courseResult.rows.length > 0) {
-      return res.status(400).json({ message: 'Course with this name already exists.' });
+    // Check if the course already exists for the user
+    const existingCourse = await pool.query(
+      "SELECT * FROM usercourse WHERE user_email = $1 AND course_id = $2",
+      [email, coursename]
+    );
+
+    if (existingCourse.rows.length > 0) {
+      return res.status(400).json({ message: "Course already added" });
     }
 
-    // Insert new course
-    const insertCourseQuery = 'INSERT INTO course(course_name, image_src) VALUES($1, $2) RETURNING id';
-    const courseInsertResult = await pool.query(insertCourseQuery, [name, image]);
-    const courseId = courseInsertResult.rows[0].id;
+    // If not exists, insert new course
+    await pool.query(
+      "INSERT INTO usercourse (user_email, course_id, status, completed) VALUES ($1, $2, $3, $4)",
+      [email, coursename, status, completed]
+    );
 
-    // Iterate through topics and insert them
-    for (const topic of topics) {
-      const { topic_name, subtopic_name, paragraphs, quiz } = topic;
-
-      // Check if the topic already exists for the course
-      const topicQuery = 'SELECT * FROM topics WHERE course_name = $1 AND topic_name = $2';
-      const topicResult = await pool.query(topicQuery, [name, topic_name]);
-
-      if (topicResult.rows.length > 0) {
-        return res.status(400).json({ message: `Topic "${topic_name}" already exists for this course.` });
-      }
-
-      // Insert topic
-      const insertTopicQuery = 'INSERT INTO topics(course_name, topic_name, subtopic_name, paragraphs, quiz) VALUES($1, $2, $3, $4, $5) RETURNING id';
-      const topicInsertResult = await pool.query(insertTopicQuery, [
-        name,
-        topic_name,
-        subtopic_name,
-        JSON.stringify(paragraphs),
-        JSON.stringify(quiz),
-      ]);
-
-      // Check for subtopic duplication in the same topic
-      const subtopicQuery = 'SELECT * FROM topics WHERE course_name = $1 AND topic_name = $2 AND subtopic_name = $3';
-      const subtopicResult = await pool.query(subtopicQuery, [name, topic_name, subtopic_name]);
-
-      if (subtopicResult.rows.length > 0) {
-        return res.status(400).json({ message: `Subtopic "${subtopic_name}" already exists for topic "${topic_name}".` });
-      }
-
-      // Insert subtopic
-      await pool.query('INSERT INTO topics(course_name, topic_name, subtopic_name) VALUES($1, $2, $3)', [
-        name,
-        topic_name,
-        subtopic_name,
-      ]);
-    }
-
-    return res.status(200).json({ message: 'Course added successfully!' });
+    res.status(201).json({ message: "Course added successfully" });
   } catch (error) {
-    console.error('Error adding course:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    console.error("Error adding course:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
 
 
 export const getcourse = async (req, res) => {
