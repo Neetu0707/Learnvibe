@@ -39,7 +39,7 @@ const AccordionItem = ({
       setToken(parsedUser);
       setEmail(parsedUser.email);
       setTopicCompleted(
-        usercourses.find((c) => c.course_id === courseName)?.completed
+        usercourses.find((c) => c.course_id === courseName).completed
       );
       console.log("Topic completed:", topicCompleted);
 
