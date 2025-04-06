@@ -169,3 +169,30 @@ export const getusercourse = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error", error: error.message });
   }
 };
+
+export const deleteCourseFile = async (req, res) => {
+  try {
+    const { fileName } = req.body;
+
+    // Check if file exists
+    const file = await pool.query(
+      "SELECT * FROM json_files WHERE file_name = $1",
+      [fileName]
+    );
+
+    if (file.rows.length === 0) {
+      return res.status(404).json({ message: "Course file not found" });
+    }
+
+    // Delete file
+    await pool.query(
+      "DELETE FROM json_files WHERE file_name = $1",
+      [fileName]
+    );
+
+    return res.status(200).json({ message: "Course file deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting course file:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
